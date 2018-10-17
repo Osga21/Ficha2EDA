@@ -22,3 +22,21 @@ Matriz::Matriz(int l, int c) {
 		}
 	}
 }
+
+bool Matriz::Ler(char * nome_ficheiro)
+{
+	FILE *ficheiro;
+	ficheiro = fopen(nome_ficheiro, "r");
+	if (ficheiro == NULL)
+		return false;
+	else {
+		
+		return true;
+	}
+}
+
+void Matriz::Escrever()
+{
+	
+}
+

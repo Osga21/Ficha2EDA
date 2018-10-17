@@ -1,4 +1,5 @@
 #pragma once
+#define _CRT_SECURE_NO_WARNINGS
 // Definição da classe Matriz que contem as operações
 // tipicas de matrizes
 class Matriz {
@@ -11,7 +12,7 @@ class Matriz {
 		void Iniciar(int nLinhas, int nColunas);
 	public:
 		Matriz(); // Construtor de defeito
-		Matriz(const Matriz& m1); // Construtor Copy
+		Matriz(const Matriz &m1); // Construtor Copia
 		Matriz(int nLinhas, int nColunas);
 		~Matriz(); // Destrutor
 		bool PodeMultiplicar(const Matriz* pm);
@@ -19,7 +20,7 @@ class Matriz {
 		const Matriz& operator = (const Matriz& m1);
 		Matriz operator + (const Matriz& m1);
 		Matriz operator * (const Matriz& m1);
-		bool Ler(char* nome_ficheiro);
+		static bool Ler(char* nome_ficheiro);
 		void Escrever();
 		Matriz DecomporLU();
 };
