@@ -9,19 +9,21 @@ class Matriz {
 		int nlinhas;
 		int ncols;
 		// Funções privadas
-		void Apagar(); //DONE
-		void Iniciar(int nLinhas, int nColunas); //DONE
+		void Apagar(); 
+		void Iniciar(int nLinhas, int nColunas); 
 	public:
-		Matriz(); // Construtor de defeito DONE
+		Matriz(); // Construtor de defeito 
 		Matriz(const Matriz &m1); // Construtor Copia 
-		Matriz(int nLinhas, int nColunas); //DONE
+		Matriz(int nLinhas, int nColunas); 
 		~Matriz(); // Destrutor DONE
-		bool PodeMultiplicar(const Matriz* pm);//DONE
-		bool PodeSomar(const Matriz* pm);//DONE
+		bool PodeMultiplicar(const Matriz* pm);
+		bool PodeSomar(const Matriz* pm);
+
 		const Matriz operator = (const Matriz& m1);
 		Matriz operator + (const Matriz& m1);
 		Matriz operator * (const Matriz& m1);
-		bool Ler(const char * nome_ficheiro);//DONE
-		void Escrever();//DONE
+		
+		bool Ler(const char * nome_ficheiro);
+		void Escrever();
 		Matriz DecomporLU();
 };

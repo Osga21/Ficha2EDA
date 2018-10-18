@@ -29,8 +29,52 @@ bool Matriz::PodeSomar(const Matriz * pm)
 
 const Matriz Matriz::operator=(const Matriz & m1)
 {
-	int i = 0;
-	return m1;
+	Apagar();
+	Iniciar(m1.nlinhas, m1.ncols);
+	for (int i = 0; i < m1.nlinhas; i++) {
+		for (int j = 0; j < m1.ncols; j++) {
+			elems[i][j] = m1.elems[i][j];
+		}
+	}
+	return *this;
+}
+
+Matriz Matriz::operator+(const Matriz & m1)
+{
+	Matriz m2;
+	m2 = *this;
+	
+	if (m2.PodeSomar(&m1)) {
+
+		Apagar();
+		Iniciar(m1.nlinhas,m1.ncols);
+		for (int i = 0; i < m1.nlinhas; i++) {
+			for (int j = 0; j < m1.ncols; j++) {
+				elems[i][j] = m1.elems[i][j]+ m2.elems[i][j];
+			}
+		}
+		return *this;
+	}
+	
+}
+
+Matriz Matriz::operator*(const Matriz & m1)
+{
+	Matriz m2;
+	m2 = *this;
+
+	if(m2.PodeMultiplicar(&m2))
+	Apagar();
+	Iniciar(m2.nlinhas, m1.ncols);
+	for (int i = 0; i < m2.nlinhas; i++) {
+		for (int j = 0; j < m1.ncols; j++) {
+			elems[i][j]=0;
+			for (int k = 0; k < m2.ncols; k++) {
+				elems[i][j] +=m2.elems[i][k] * m1.elems[k][j];
+			}
+		}
+	}
+	return *this;
 }
 
 Matriz::Matriz() { //construtor por omissão
@@ -42,7 +86,7 @@ Matriz::Matriz(const Matriz & m1)
 {
 	Iniciar(m1.nlinhas,m1.ncols);
 	for (int i = 0; i < m1.nlinhas; i++) {
-		for (int j = 0; j < m1.ncols; j++) { //inicialização
+		for (int j = 0; j < m1.ncols; j++) { 
 			elems[i][j]=m1.elems[i][j];
 		}
 	}
