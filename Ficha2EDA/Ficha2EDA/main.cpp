@@ -10,19 +10,26 @@ int main(){
 	m.Ler("matriz1.txt");	//matriz usando ficheiro
 	z.Ler("matriz2.txt");
 
+	printf("Matriz [M]:\n\n");
 	m.Escrever(); //escrita de matriz
 	printf("\n");
+	printf("Matriz [Z]:\n\n");
 	z.Escrever();
 
 	Matriz k;
 	Matriz l = m; //Operador =
 
-	k = m*l;//Operador *
+	k = m*z;//Operador *
 	printf("\n");
+	printf("Matriz [M]*[Z]:\n\n");
 	k.Escrever();
+	printf("\n");
+
+	printf("Matriz [M]+[M]:\n\n");
 
 	Matriz s;
 	s = l + m;//Operador +
+	s.Escrever();
 
 
 	system("pause");

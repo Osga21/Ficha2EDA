@@ -73,7 +73,7 @@ void Matriz::Escrever()
 {
 	for (int i = 0; i < nlinhas; i++) {
 		for (int j = 0; j < ncols; j++) { //inicialização
-			printf("%g ", elems[i][j]);
+			printf(" %g\t", elems[i][j]);
 		}
 		printf("\n");
 	}
