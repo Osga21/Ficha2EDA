@@ -4,7 +4,7 @@
 
 Matriz::Matriz(int nLinhas, int nColunas)
 {
-	Iniciar(nlinhas, ncols);
+	Iniciar(nLinhas, nColunas);
 }
 
 Matriz::~Matriz()
@@ -12,10 +12,40 @@ Matriz::~Matriz()
 	Apagar();
 }
 
+bool Matriz::PodeMultiplicar(const Matriz * pm)
+{
+	if (ncols == pm->nlinhas) 
+		return true;
+	else
+		return false;
+}
+
+bool Matriz::PodeSomar(const Matriz * pm)
+{
+	if (ncols == pm->ncols && nlinhas == pm->nlinhas)
+		return true;
+	return false;
+}
+
+const Matriz Matriz::operator=(const Matriz & m1)
+{
+	int i = 0;
+	return m1;
+}
+
 Matriz::Matriz() { //construtor por omissão
-	elems = NULL;
-	nlinhas = 0;
-	ncols = 0;
+	
+	Iniciar(0,0);
+}
+
+Matriz::Matriz(const Matriz & m1) 
+{
+	Iniciar(m1.nlinhas,m1.ncols);
+	for (int i = 0; i < m1.nlinhas; i++) {
+		for (int j = 0; j < m1.ncols; j++) { //inicialização
+			elems[i][j]=m1.elems[i][j];
+		}
+	}
 }
 
 void Matriz::Apagar()
@@ -25,7 +55,6 @@ void Matriz::Apagar()
 		}
 	delete[] elems;
 	}
-
 
 void Matriz::Iniciar(int l, int c) {
 	nlinhas = l;

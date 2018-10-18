@@ -4,9 +4,21 @@
 #include <stdlib.h>
 int main(){
 	Matriz m;
-	Matriz n;
+	Matriz n(3,3);
+
 	m.Ler("test.txt");
 	m.Escrever();
-	system("pause");
+	n.Escrever();
 
+	printf("\n\n%d",m.PodeMultiplicar(&n));
+
+	printf("\n\n%d\n", m.PodeSomar(&n));
+
+	Matriz l(m);
+	
+	l.Escrever();
+
+
+
+	system("pause");
 }
