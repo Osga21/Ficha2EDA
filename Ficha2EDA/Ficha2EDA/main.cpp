@@ -4,21 +4,25 @@
 #include <stdlib.h>
 int main(){
 	Matriz m;
-	Matriz n(3,3);
 	Matriz z;
-	m.Ler("matriz1.txt");	
+	Matriz n(3, 3); //usando construtor por defeito
+
+	m.Ler("matriz1.txt");	//matriz usando ficheiro
 	z.Ler("matriz2.txt");
-	m.Escrever();
+
+	m.Escrever(); //escrita de matriz
 	printf("\n");
 	z.Escrever();
 
 	Matriz k;
+	Matriz l = m; //Operador =
 
-	Matriz l = m;
-	k = m*l;
+	k = m*l;//Operador *
 	printf("\n");
-
 	k.Escrever();
+
+	Matriz s;
+	s = l + m;//Operador +
 
 
 	system("pause");
