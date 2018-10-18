@@ -7,6 +7,11 @@ Matriz::Matriz(int nLinhas, int nColunas)
 	Iniciar(nlinhas, ncols);
 }
 
+Matriz::~Matriz()
+{
+	Apagar();
+}
+
 Matriz::Matriz() { //construtor por omissão
 	elems = NULL;
 	nlinhas = 0;
@@ -31,13 +36,13 @@ void Matriz::Iniciar(int l, int c) {
 	}
 
 	for (int i = 0; i < nlinhas; i++) {
-		for (int j = 0; j > nlinhas; j++) { //inicialização
+		for (int j = 0; j < ncols; j++) { //inicialização
 			elems[i][j] = 0;
 		}
 	}
 }
 
-bool Matriz::Ler(char *nome_ficheiro)
+bool Matriz::Ler(const char *nome_ficheiro)
 {
 	FILE *ficheiro;
 	ficheiro = fopen(nome_ficheiro, "r");
@@ -45,11 +50,11 @@ bool Matriz::Ler(char *nome_ficheiro)
 		return false;
 	else {
 		Apagar();
-		fscanf(ficheiro,"%d %d", nlinhas,ncols);
+		fscanf(ficheiro,"%d %d", &nlinhas,&ncols);
 		Iniciar(nlinhas, ncols);
 		for (int i = 0; i < nlinhas; i++) {
-			for (int j = 0; j > nlinhas; j++) { //inicialização
-				fscanf(ficheiro,"%f",elems[i][j]);
+			for (int j = 0; j < ncols; j++) { //inicialização
+				fscanf(ficheiro,"%f",&elems[i][j]);
 			}
 		}
 		return true;
@@ -58,6 +63,13 @@ bool Matriz::Ler(char *nome_ficheiro)
 
 void Matriz::Escrever()
 {
+	for (int i = 0; i < nlinhas; i++) {
+		for (int j = 0; j < ncols; j++) { //inicialização
+			printf("%g ", elems[i][j]);
+		}
+		printf("\n");
+	}
 	
 }
+
 

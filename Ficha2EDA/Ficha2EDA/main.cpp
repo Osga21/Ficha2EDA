@@ -3,7 +3,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 int main(){
-	char filename[] = { "test.txt" };
-	printf("%d",Matriz::Ler(filename));
+	Matriz m;
+	Matriz n;
+	m.Ler("test.txt");
+	m.Escrever();
 	system("pause");
+
 }

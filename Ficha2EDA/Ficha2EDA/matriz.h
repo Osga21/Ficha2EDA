@@ -20,7 +20,7 @@ class Matriz {
 		const Matriz& operator = (const Matriz& m1);
 		Matriz operator + (const Matriz& m1);
 		Matriz operator * (const Matriz& m1);
-		static bool Ler(char* nome_ficheiro);
+		bool Ler(const char * nome_ficheiro);
 		void Escrever();
 		Matriz DecomporLU();
 };
