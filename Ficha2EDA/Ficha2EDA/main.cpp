@@ -31,6 +31,12 @@ int main(){
 	s = l + m;//Operador +
 	s.Escrever();
 
+	printf("Matriz [T] decomposta:\n\n");
+	Matriz t,f;
+	t.Ler("matrizt.txt");
+	f=t.DecomporLU();
+	f.Escrever();
+	
 
 	system("pause");
 }

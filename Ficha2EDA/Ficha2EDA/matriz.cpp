@@ -109,19 +109,25 @@ const Matriz Matriz::operator=(const Matriz & m1)
 
 Matriz Matriz::operator+(const Matriz & m1)
 {
+	/*Devole soma de duas matrizes, devolve matriz nula
+	caso não seja possivel fazer a soma(ver PodeSomar)*/
 	Matriz m2;
 	m2 = *this;
-	
+
 	if (m2.PodeSomar(&m1)) {
 
 		Apagar();
-		Iniciar(m1.nlinhas,m1.ncols);
+		Iniciar(m1.nlinhas, m1.ncols);
 		for (int i = 0; i < m1.nlinhas; i++) {
 			for (int j = 0; j < m1.ncols; j++) {
-				elems[i][j] = m1.elems[i][j]+ m2.elems[i][j];
+				elems[i][j] = m1.elems[i][j] + m2.elems[i][j];
 			}
 		}
 		return *this;
+	}
+	else{
+		Matriz m0(nlinhas, ncols);
+		return m0;
 	}
 	
 }
@@ -145,6 +151,53 @@ Matriz Matriz::operator*(const Matriz & m1)
 	return *this;
 }
 
+Matriz Matriz::DecomporLU()
+{
+	/*Devolve decomposta LU caso a matriz seja quadrada,
+	devolve matriz nula se não for quadrada*/
+
+	Matriz LU(nlinhas, ncols); //Matriz nula
+
+	if (nlinhas == ncols) {
+		Matriz L(nlinhas, nlinhas);
+		Matriz U(nlinhas, nlinhas);
+		for (int i = 0; i < nlinhas; i++) { //Cálculo da upper
+			for (int j = i; j < nlinhas; j++) {
+
+				float sum = 0;
+				for (int k = 0; k < i; k++) {
+
+					sum += (L.elems[i][k] * U.elems[k][j]);
+				}
+
+				U.elems[i][j] = elems[i][j] - sum;
+			}
+
+			for (int j = i; j < nlinhas; j++) { //Calculo da lower
+				if (i == j)
+					L.elems[i][i] = 1; // Diagonal da matriz lower a 1
+				else {
+					float sum = 0;
+					for (int k = 0; k < i; k++)
+						sum += (L.elems[j][k] * U.elems[k][i]);
+					L.elems[j][i] = (elems[j][i] - sum) / U.elems[i][i];
+				}
+			}
+		}
+		//Junção upper e lower
+		LU = U;
+		for (int i = 0; i < nlinhas; i++) {
+			for (int j = 0; j < nlinhas; j++) {
+				if (LU.elems[i][j] == 0)
+					LU.elems[i][j] = L.elems[i][j];
+			}
+		}
+		return LU;
+	}
+
+	else
+		return LU;
+}
 
 
 
